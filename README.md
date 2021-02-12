@@ -15,6 +15,8 @@ I have forked extension to use the original author's nice groundwork to expand t
 - Send to Deck now saves file afterward if user has enabled Sync to allow writing metadata to the filesystem.
 - Send is now more informative, reporting counts of changes.
 - Send now resets Anki UI to DeckBrowser (important if card is deleted that user is actively reviewing)
+- In Nested Header strategy, added reverse cards: Make a header with the text <> and the back becomes the front.
+
 
 ## Todo:
 
@@ -47,25 +49,23 @@ The front of the cards is the tree of headers to the card. This allows you to cr
 axillary-neuropraxia.md:
 
       # Axillary Neuropraxia
-
       see [[Neuropaxia]]
 
       ## Etiology
-
       - Shoulder dislocation
       - Masses
 
       ## Findings
-
       ### MRI findings
-
       Atrophy of teres minor muscle, inferior deltoid
 
       ![](2021-01-15-10-39-54.png) ![](2021-01-15-10-41-15.png)
 
       ## Associated Lesion
-
       [[GAGL]] from shoulder dislocation
+
+      ## <>
+      [[GAGL]] is associated with which nerve pathology?
 
 Text appearance of created cards (In reality they have the HTML styling from the markdown parser):
 
@@ -94,9 +94,15 @@ Text appearance of created cards (In reality they have the HTML styling from the
     ---
     [GAGL] from shoulder dislocation
 
+
+    [GAGL] is associated with which nerve pathology?
+    ---
+    Axillary Neuropraxia
+
 *** Media & html is sent to and rendered in Anki appropriately like the original plugin.
 
 I recommend you update the card style sheet within Anki to adjust the headers, in particular to make h1 smaller. I just added the line  `h1 { font-size: 20px }` to mine.
+
 
 
 # Original Readme below:

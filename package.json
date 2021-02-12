@@ -1,6 +1,6 @@
 {
   "name": "anki",
-  "displayName": "Anki for VSCode",
+  "displayName": "Anki Fork for VSCode",
   "description": "Sync notes with your locally running Anki",
   "version": "1.0.4",
   "publisher": "jasew",

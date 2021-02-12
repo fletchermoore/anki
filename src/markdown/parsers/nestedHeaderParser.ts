@@ -3,6 +3,7 @@ import { MdParser } from "./mdParser";
 
 
 export class NestedHeaderParser {
+    private reverseRegex = /^#+\s<>/
 
     public async parse(content: string): Promise<Card[]> {
         const lines = content.split(/\r\n|\r|\n/);
@@ -49,11 +50,13 @@ export class NestedHeaderParser {
         return cards;
     }
 
-    private async cardFrom(front: string[], back: string[]): Promise<Card | null> {
-        if (front.length == 0 || back.length == 0) {
+    private async cardFrom(rawFrontLines: string[], back: string[]): Promise<Card | null> {
+        if (rawFrontLines.length == 0 || back.length == 0) {
             return null;
         }
         else {
+            const front = this.popReverseFlag(rawFrontLines);
+            const isReverse = front.length < rawFrontLines.length;
             const joinedFront = front.join('\n').trim();
             const joinedBack = back.join('\n').trim();
             if (joinedBack == '') {
@@ -61,8 +64,24 @@ export class NestedHeaderParser {
             } else {
                 const frontHtml = await new MdParser({}).parse(joinedFront);
                 const backHtml = await new MdParser({}).parse(joinedBack);
-                return new Card(frontHtml, backHtml);
+                if (isReverse) {
+                    return new Card(backHtml, frontHtml);
+                }
+                else {
+                    return new Card(frontHtml, backHtml);
+                }
+                
             }            
+        }
+    }
+
+    private popReverseFlag(front: string[]) {
+        if (front.length == 0) return front;
+        const matches = front[front.length - 1].match(this.reverseRegex)
+        if (matches) {
+            return front.slice(0,front.length-1)
+        } else {
+            return front;
         }
     }
 }
