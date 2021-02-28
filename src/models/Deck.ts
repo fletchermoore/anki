@@ -8,7 +8,7 @@ export class Deck {
   public cards: Card[];
   private mediaCollection: any[];
   private ankiService?: AnkiService;
-  /** Id is optional on Decks because they can be created before syncing back to Anki.
+  /** Id is optional on Decks because they can be created before syncing back to ankifork.
    * Therefore, newly created decks won't have IDs (this is currently not implemented though)
    * So for now we can assume all decks have an id.
    */

@@ -6,14 +6,14 @@ import { SendDiff } from "./models/SendDiff";
 export const subscriptions = (ctx: IContext) => {
   ctx.context.subscriptions.push(
     workspace.onDidChangeConfiguration((e) => {
-      if (e.affectsConfiguration("anki.defaultDeck")) {
+      if (e.affectsConfiguration("ankifork.defaultDeck")) {
         ctx.config.defaultDeck =
-          workspace.getConfiguration("anki").get("defaultDeck") || "";
+          workspace.getConfiguration("ankifork").get("defaultDeck") || "";
       }
 
-      if (e.affectsConfiguration("anki.log")) {
+      if (e.affectsConfiguration("ankifork.log")) {
         ctx.config.log =
-          workspace.getConfiguration("anki").get("log") || "error";
+          workspace.getConfiguration("ankifork").get("log") || "error";
       }
     })
   );
@@ -21,7 +21,7 @@ export const subscriptions = (ctx: IContext) => {
   ctx.context.subscriptions.push(
     workspace.onDidSaveTextDocument((e) => {
       if (e.languageId == "markdown") {
-        if (workspace.getConfiguration("anki.send").get("keepSync")) {
+        if (workspace.getConfiguration("ankifork.send").get("keepSync")) {
           sendFile(e.uri, ctx, true).then((diff) => {
             if (diff && diff instanceof SendDiff) {
               window.showInformationMessage("Auto send results: " + diff.toString());

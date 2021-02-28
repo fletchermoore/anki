@@ -39,7 +39,7 @@ export class Serializer {
   }
 
   private getConfig(conf: string) {
-    return workspace.getConfiguration("anki.md").get(conf);
+    return workspace.getConfiguration("ankifork.md").get(conf);
   }
 
   private async splitNestedHeaders(mdString: string): Promise<ParsedData> {

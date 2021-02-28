@@ -208,7 +208,7 @@ export const initFilesystem = (ctx: IContext) => {
   _initialised = true;
 
   ctx.context.subscriptions.push(
-    vscode.workspace.registerFileSystemProvider("anki", _ankiFs, {
+    vscode.workspace.registerFileSystemProvider("ankifork", _ankiFs, {
       isCaseSensitive: true,
       isReadonly: true,
     })

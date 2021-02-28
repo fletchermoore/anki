@@ -4,13 +4,13 @@ I have forked extension to use the original author's nice groundwork to expand t
 
 ## Changes so far
 
-- Added command: "Anki: Send All" Send all the .md files in your (1st) workspace to Anki.
+- Added command: "Anki: Send All" Send all the .md files in your (1st) workspace to ankifork.
 - Fixed(?) Transformer.transform() to use constructor source instead of active text document.
 - Transformer & Serializer now take MarkdownFile objects
 - Serializer can now handle media with relative file paths.
-- Added option: "anki.md.card.strategy" with "Nested Headers" & "Delimiter"; Delimiter is original author strategy. See Nested Headers below
-- Added option: "anki.send.allowUpdates". If enabled, this will check the anki db for cards where the front matches the sent card. Then, if the rest of the fields are not a match, it will delete the card from the anki db and replace it with the sent card. This will allow you continuously edit the markdown files and have it reflected in anki. This will of course, remove any learning state from the card, which is my current intended behavior. Beware: If you edit a card from within Anki, these changes will trigger a delete as it will no longer match the markdown.
-- Added option: "anki.send.keepSync". If enabled, after send metadata is added to the bottom of the file. Subsequent file changes will trigger another send. BEWARE: Cards deleted from the markdown will be deleted from the Anki database. Delete the metadata from the file to prevent future sync.
+- Added option: "ankifork.md.card.strategy" with "Nested Headers" & "Delimiter"; Delimiter is original author strategy. See Nested Headers below
+- Added option: "ankifork.send.allowUpdates". If enabled, this will check the anki db for cards where the front matches the sent card. Then, if the rest of the fields are not a match, it will delete the card from the anki db and replace it with the sent card. This will allow you continuously edit the markdown files and have it reflected in ankifork. This will of course, remove any learning state from the card, which is my current intended behavior. Beware: If you edit a card from within Anki, these changes will trigger a delete as it will no longer match the markdown.
+- Added option: "ankifork.send.keepSync". If enabled, after send metadata is added to the bottom of the file. Subsequent file changes will trigger another send. BEWARE: Cards deleted from the markdown will be deleted from the Anki database. Delete the metadata from the file to prevent future sync.
 - Fixed: pushNewCardsToAnki returns NOTE IDs, which were assigned to the Card model's id field. AnkiSerivce.findCards then assigned CARD IDS to the Id field. Fixed to assign note Ids instead of Card Ids in the Card model. Anki potentially creates multiple cards per note, so if there is a need to track card ids, i renamed Card.id to Card.noteId to prevent future confusion.
 - Send to Deck now saves file afterward if user has enabled Sync to allow writing metadata to the filesystem.
 - Send is now more informative, reporting counts of changes.
@@ -109,9 +109,9 @@ I recommend you update the card style sheet within Anki to adjust the headers, i
 
 
 
-[![](https://vsmarketplacebadge.apphb.com/version/jasew.anki.svg)](https://marketplace.visualstudio.com/items?itemName=jasew.anki)
+[![](https://vsmarketplacebadge.apphb.com/version/jasew.ankifork.svg)](https://marketplace.visualstudio.com/items?itemName=jasew.anki)
 
-This is a VSCode extension for interacting and sending cards to Anki.  
+This is a VSCode extension for interacting and sending cards to ankifork.  
 It uses AnkiConnect for communication so you will need this extension installed and running before installing the VSCode extension.
 
 ## Requirements
@@ -131,7 +131,7 @@ This extension will also add a tag to each card based on the title, so you can s
 
 Here's an example
 
-![image](./docs/img/sendToAnki.gif)
+![image](./docs/img/sendToankifork.gif)
 
 ### Send to own deck
 
@@ -247,15 +247,15 @@ echo "Hello, World!"
 
 ## Extension Settings
 
-- `anki.defaultDeck`: Default deck to send notes to. | _notes_
-- `anki.md.createTagForTitle`: Send tag with cards? (when using default deck). | _true_
-- `anki.api.hostname`: API Hostname. | _127.0.0.1_
-- `anki.api.port`: API Port. | _8765_
-- `anki.api.schema`: Schema. | _http_
+- `ankifork.defaultDeck`: Default deck to send notes to. | _notes_
+- `ankifork.md.createTagForTitle`: Send tag with cards? (when using default deck). | _true_
+- `ankifork.api.hostname`: API Hostname. | _127.0.0.1_
+- `ankifork.api.port`: API Port. | _8765_
+- `ankifork.api.schema`: Schema. | _http_
 
 I don't recommend messing with the following settings
 
-- `anki.md.card.separator`: Regex used for separating cards
-- `anki.md.card.frontBackSeparator`: Regex used for separating front / back
-- `anki.md.card.tagPattern`: Regex used to scrape tags
-- `anki.md.deck.titleSeparator`: Regex to remove the top title from cards
+- `ankifork.md.card.separator`: Regex used for separating cards
+- `ankifork.md.card.frontBackSeparator`: Regex used for separating front / back
+- `ankifork.md.card.tagPattern`: Regex used to scrape tags
+- `ankifork.md.deck.titleSeparator`: Regex to remove the top title from cards

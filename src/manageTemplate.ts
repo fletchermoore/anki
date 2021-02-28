@@ -47,7 +47,7 @@ export async function createOrUpdateTemplate(ctx: IContext) {
     return;
   } else {
     getLogger().info(
-      `${CONSTANTS.defaultTemplateName} was not found in Anki. Will attempt to upload..`
+      `${CONSTANTS.defaultTemplateName} was not found in ankifork. Will attempt to upload..`
     );
 
     const result = await ctx.ankiService.createModel(model);

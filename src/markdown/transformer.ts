@@ -32,7 +32,7 @@ export class Transformer {
     this.ankiService = ankiService;
     this.useDefault = useDefault;
     this.defaultDeck = workspace
-      .getConfiguration("anki")
+      .getConfiguration("ankifork")
       .get("defaultDeck") as string;
   }
 
@@ -59,7 +59,7 @@ export class Transformer {
       deckName &&
       this.useDefault &&
       (workspace
-        .getConfiguration("anki.md")
+        .getConfiguration("ankifork.md")
         .get("createTagForTitle") as boolean)
     ) {
       cards.forEach((v) => v.addTag(deckName));
@@ -73,7 +73,7 @@ export class Transformer {
     // console.log('after diff creation');
     // delete cards from anki that have been deleted from markdown
     // then add cards ids to markdown meta that are verified in Anki
-    if (workspace.getConfiguration("anki.send").get("keepSync")) {
+    if (workspace.getConfiguration("ankifork.send").get("keepSync")) {
       const priorNoteIds = this.source.noteIds;
       // console.log('prior ids', priorNoteIds);
       const currentCards = diff.cardsAdded.concat(diff.cardsUnchanged);
@@ -125,7 +125,7 @@ export class Transformer {
       throw new Error("No Deck exists for current cards");
     }
     let allowUpdates: boolean = false;
-    if (workspace.getConfiguration("anki.send").get("allowUpdates")) {
+    if (workspace.getConfiguration("ankifork.send").get("allowUpdates")) {
       allowUpdates = true;
       
     }

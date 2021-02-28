@@ -12,7 +12,7 @@ import { SendDiff } from "./models/SendDiff";
 
 export const registerCommands = (ctx: IContext) => {
   // Handle Syncing the Anki Instance
-  let disposableSync = commands.registerCommand("anki.sync", async () => {
+  let disposableSync = commands.registerCommand("ankifork.sync", async () => {
     // The code you place here will be executed every time your command is executed
     window.withProgress(
       {
@@ -32,7 +32,7 @@ export const registerCommands = (ctx: IContext) => {
 
   // Handle Syncing the Anki Instance
   let disposableSendToDeck = commands.registerCommand(
-    "anki.sendToDeck",
+    "ankifork.sendToDeck",
     async () => {
       // The code you place here will be executed every time your command is executed
       window.withProgress(
@@ -55,7 +55,7 @@ export const registerCommands = (ctx: IContext) => {
 
   // Handle Syncing the Anki Instance
   let disposableSendToStandalone = commands.registerCommand(
-    "anki.sendToStandalone",
+    "ankifork.sendToStandalone",
     async () => {
       // The code you place here will be executed every time your command is executed
       window.withProgress(
@@ -81,7 +81,7 @@ export const registerCommands = (ctx: IContext) => {
 
 
   let disposableSendDir = commands.registerCommand(
-    "anki.sendDir",
+    "ankifork.sendDir",
     async () => {
       window.withProgress(
         {
@@ -121,7 +121,7 @@ export const registerCommands = (ctx: IContext) => {
   );
 
   let disposableTreeItemOpen = commands.registerCommand(
-    "anki.treeItem",
+    "ankifork.treeItem",
     async (uri) => {
       const doc = await workspace.openTextDocument(Uri.parse(uri));
       window.showTextDocument(doc);
@@ -129,7 +129,7 @@ export const registerCommands = (ctx: IContext) => {
   );
 
   let disposableForceInstall = commands.registerCommand(
-    "anki.forceInstall",
+    "ankifork.forceInstall",
     async () => {
       await initialSetup(ctx);
     }

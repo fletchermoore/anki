@@ -36,7 +36,7 @@ export async function initialSetup(ctx: IContext) {
     },
   ];
   try {
-    disposable = window.setStatusBarMessage("Uploading resources to Anki...");
+    disposable = window.setStatusBarMessage("Uploading resources to ankifork...");
     await createOrUpdateTemplate(ctx);
     result = await ctx.ankiService.storeMultipleFiles(resources);
     disposable.dispose();

@@ -44,21 +44,21 @@ export interface IContext {
 // your extension is activated the very first time the command is executed
 export function activate(context: ExtensionContext) {
   // config
-  const schema = workspace.getConfiguration("anki.api").get("schema");
-  const hostname = workspace.getConfiguration("anki.api").get("hostname");
-  const port = workspace.getConfiguration("anki.api").get("port");
+  const schema = workspace.getConfiguration("ankifork.api").get("schema");
+  const hostname = workspace.getConfiguration("ankifork.api").get("hostname");
+  const port = workspace.getConfiguration("ankifork.api").get("port");
   ("Failed to connect to Anki: Do you have Anki running?");
   const config: IConfig = {
     defaultDeck: workspace
-      .getConfiguration("anki")
+      .getConfiguration("ankifork")
       .get("defaultDeck") as string,
-    log: workspace.getConfiguration("anki").get("log") as LogLevel,
+    log: workspace.getConfiguration("ankifork").get("log") as LogLevel,
   };
 
   // Start up Anki Service
   const ankiService = new AnkiService(`${schema}://${hostname}:${port}`);
 
-  const ankiExt = extensions.getExtension("jasew.anki");
+  const ankiExt = extensions.getExtension("FletcherMoore.ankifork");
   const extMeta = ankiExt?.packageJSON;
 
   // Set up logging

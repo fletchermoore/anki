@@ -12,7 +12,7 @@ export class BaseParser {
   }
 
   protected getConfig(conf: string) {
-    return workspace.getConfiguration("anki.md").get(conf);
+    return workspace.getConfiguration("ankifork.md").get(conf);
   }
 
   //   /**

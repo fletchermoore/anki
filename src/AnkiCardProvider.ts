@@ -186,7 +186,7 @@ class Dependency extends TreeItem {
     this.uri = uri;
     if (type === ItemType.Css || type === ItemType.Card) {
       this.command = {
-        command: "anki.treeItem",
+        command: "ankifork.treeItem",
         arguments: [this.uri, this.label],
         title: "Open",
       };
